@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.tpcafemontassarsouli.dto.client.ClientRequest;
 import tn.esprit.spring.tpcafemontassarsouli.dto.client.ClientResponse;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Client;
 import tn.esprit.spring.tpcafemontassarsouli.services.IClientService;
 
 import java.util.List;
@@ -32,6 +33,11 @@ public class ClientRestController {
     @GetMapping("getAllClientsDTO")
     public List<ClientResponse> getAllClientsDTO(){
         return service.getAllClientsDTO();
+    }
+
+    @PostMapping("ajouterClient")
+    public void ajouterClient(@RequestBody Client c){
+        service.ajouterClient(c);
     }
 
 }

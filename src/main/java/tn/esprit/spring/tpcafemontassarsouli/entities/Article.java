@@ -25,6 +25,6 @@ public class Article {
     TypeArticle typeArticle;
     @OneToMany(mappedBy = "article")
     List<DetailCommande> detailCommande;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Promotion> promotion;
 }

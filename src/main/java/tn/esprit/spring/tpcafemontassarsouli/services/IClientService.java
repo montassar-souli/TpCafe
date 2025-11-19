@@ -25,4 +25,5 @@ public interface IClientService {
     void deleteClientById(long id);
     long countingClient();
     boolean verifClientById(long id);
+    void ajouterClient(Client c);
 }

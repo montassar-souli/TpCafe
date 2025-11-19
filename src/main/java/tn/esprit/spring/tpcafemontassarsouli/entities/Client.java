@@ -23,9 +23,11 @@ public class Client {
     String nom;
     String prenom;
     LocalDate dateNaissance;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="id_adresse")
     Adresse adresse;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     CarteFidelite carteFidelite;
     @OneToMany(mappedBy = "client")
     List<Commande> commande;

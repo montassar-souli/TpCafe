@@ -89,4 +89,9 @@ public class ClientService implements IClientService{
     public boolean verifClientById(long id) {
         return repo.existsById(id);
     }
+
+    @Override
+    public void ajouterClient(Client c) {
+        repo.save(c);
+    }
 }
