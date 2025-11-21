@@ -33,4 +33,14 @@ public class PromotionRestController {
     public List<PromotionResponse> getAllPromotionsDTO() {
         return service.getAllPromotionsDTO();
     }
+
+    @PutMapping("affecterPromotionAArticle")
+    public void affecterPromotionAArticle(@RequestParam long idPromotion,@RequestParam long idArticle){
+        service.affecterPromotionAArticle(idPromotion, idArticle);
+    }
+
+    @PutMapping("desaffecterPromotionAArticle")
+    public void desaffecterPromotionAArticle(long idPromotion, long idArticle){
+        service.desaffecterPromotionAArticle(idPromotion, idArticle);
+    }
 }

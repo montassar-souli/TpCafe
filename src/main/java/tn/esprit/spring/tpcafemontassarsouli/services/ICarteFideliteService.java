@@ -27,4 +27,6 @@ public interface ICarteFideliteService {
     void deleteCarteFideliteById(long id);
     long countingCarteFidelite();
     boolean verifCarteFideliteById(long id);
+
+    void affecterCarteAClient(long idCarte , long idClient);
 }

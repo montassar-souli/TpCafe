@@ -25,6 +25,8 @@ public interface IPromotionService {
     void deletePromotionById(long id);
     long countingPromotion();
     boolean verifPromotionById(long id);
+
+
     void affecterPromotionAArticle(long idPromotion, long idArticle);
     void desaffecterPromotionAArticle(long idPromotion, long idArticle);
 }

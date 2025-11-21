@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import tn.esprit.spring.tpcafemontassarsouli.dto.adresse.AdresseRequest;
 import tn.esprit.spring.tpcafemontassarsouli.dto.adresse.AdresseResponse;
 import tn.esprit.spring.tpcafemontassarsouli.entities.Adresse;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Client;
 import tn.esprit.spring.tpcafemontassarsouli.mappers.AdresseMapper;
 import tn.esprit.spring.tpcafemontassarsouli.repositories.AdresseRepository;
+import tn.esprit.spring.tpcafemontassarsouli.repositories.ClientRepository;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class AdressService implements IAdressService {
 
     AdresseRepository repo;
     AdresseMapper mapper;
+    ClientRepository clientRepo;
 
     @Override
     public Adresse addAdress(Adresse a) {
@@ -109,10 +112,12 @@ public class AdressService implements IAdressService {
     }
 
     @Override
-    public AdresseResponse getAdressByDTO(long id) {
-        Adresse a = repo.findById(id).get();
-        return mapper.fromEntityToDTO(a);
+    public String affecterAdresseAClient(String rue, String nom,String prenom) {
+        Adresse adresse = repo.findByRue(rue);
+        Client client = clientRepo.findByNomAndPrenom(nom, prenom);
+        client.setAdresse(adresse);
+        clientRepo.save(client);
+        return "L'affectation de"+nom+prenom+ " a la rue"+rue+"a été afectue avec succés";
     }
-
 
 }

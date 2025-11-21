@@ -99,4 +99,9 @@ public class AdressRestController {
     public void deleteAdressDTO(@RequestBody AdresseRequest a){
         service.deleteAdressDTO(a);
     }
+
+    @PutMapping("affecterAdresseAClient")
+    public String affecterAdresseAClient(@RequestParam String rue,@RequestParam String nom,@RequestParam String prenom){
+        return service.affecterAdresseAClient(rue,nom,prenom);
+    }
 }

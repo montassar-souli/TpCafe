@@ -29,8 +29,13 @@ public class CarteFideliteRestController {
         return service.getCarteFideliteByIdDTO(id);
     }
 
-@GetMapping("getAllCarteFideliteDTO")
+    @GetMapping("getAllCarteFideliteDTO")
     public List<CarteFideliteResponse> getAllCarteFideliteDTO(){
         return service.getAllCarteFideliteDTO();
+    }
+
+    @PutMapping("affecterCarteAClient")
+    public void affecterCarteAClient(@RequestParam long idCarte,@RequestParam long idClient){
+        service.affecterCarteAClient(idCarte,idClient);
     }
 }

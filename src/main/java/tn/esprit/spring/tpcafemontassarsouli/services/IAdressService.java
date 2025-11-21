@@ -29,5 +29,5 @@ public interface IAdressService {
     long countingAdress();
     boolean verifAdressById(long id);
 
-    AdresseResponse getAdressByDTO(long id);
+    String affecterAdresseAClient(String rue,String nom,String prenom);
 }

@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import tn.esprit.spring.tpcafemontassarsouli.dto.carteFidelite.CarteFideliteRequest;
 import tn.esprit.spring.tpcafemontassarsouli.dto.carteFidelite.CarteFideliteResponse;
 import tn.esprit.spring.tpcafemontassarsouli.entities.CarteFidelite;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Client;
 import tn.esprit.spring.tpcafemontassarsouli.mappers.CarteFideliteMapper;
 import tn.esprit.spring.tpcafemontassarsouli.repositories.CarteFideliteRepository;
+import tn.esprit.spring.tpcafemontassarsouli.repositories.ClientRepository;
 
 import java.util.List;
 @Service
@@ -14,6 +16,7 @@ import java.util.List;
 public class CarteFideliteService implements ICarteFideliteService{
     CarteFideliteRepository repo;
     CarteFideliteMapper mapper;
+    ClientRepository clientRepo;
     @Override
     public CarteFidelite addCarteFidelite(CarteFidelite a) {
         return repo.save(a);
@@ -86,5 +89,18 @@ public class CarteFideliteService implements ICarteFideliteService{
     @Override
     public boolean verifCarteFideliteById(long id) {
         return repo.existsById(id);
+    }
+
+    @Override
+    public void affecterCarteAClient(long idCarte, long idClient) {
+        // 1- findById -> carte (child)
+        CarteFidelite carte = repo.findById(idCarte).get();
+        // 1- findById -> client
+        Client client = clientRepo.findById(idClient).get();
+        // On affecte le child au parent set
+        client.setCarteFidelite(carte);
+        // Persiste .save
+
+
     }
 }

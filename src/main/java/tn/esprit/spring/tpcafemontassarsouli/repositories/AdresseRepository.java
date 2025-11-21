@@ -8,9 +8,9 @@ import tn.esprit.spring.tpcafemontassarsouli.entities.Adresse;
 import java.util.List;
 
 public interface AdresseRepository extends JpaRepository<Adresse,Long> {
-  /*
+
     //select * from Adress where rue
-    List<Adresse> findByRue(String rue);
+    Adresse findByRue(String rue);
     List<Adresse> getByRue(String rue);
     List<Adresse> searchByRue(String rue);
     List<Adresse> readByRue(String rue);
@@ -46,7 +46,7 @@ public interface AdresseRepository extends JpaRepository<Adresse,Long> {
     List<Adresse> findByCodePostalGreaterThanAndCodePostalLessThan(int min,int max);
     // select * from Adress where codePostal < ...
     List<Adresse> findByCodePostalBetween(int min,int max);
-  */
+
     @Query("SELECT a FROM Adresse a WHERE a.rue = ?1")
     List<Adresse> recupJPQL(String rue);
 
