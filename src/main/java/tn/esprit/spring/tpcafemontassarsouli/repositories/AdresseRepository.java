@@ -17,7 +17,7 @@ public interface AdresseRepository extends JpaRepository<Adresse,Long> {
     List<Adresse> queryByRue(String rue);
 
     //select * from Adress where rue=Soukra ou rue=SOUKRA
-    List<Adresse> findByRueIgnoreCase(String rue,String ville);
+    List<Adresse> findByRueIgnoreCase(String rue);
 
     //select * from Adress where rue= .... and ....
     List<Adresse> findByRueAndVille(String rue,String ville);

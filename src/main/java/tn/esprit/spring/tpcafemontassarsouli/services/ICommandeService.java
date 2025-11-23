@@ -28,6 +28,6 @@ public interface ICommandeService {
     boolean verifCommandeById(long id);
 
     void affecterCommandeAClient(long idCommande, long idClient);
-    void affecterCommandeAClient(LocalDate dateCommande,String nomClient, String prenomClient);
+    void affecterCommandeAClient2(LocalDate dateCommande,String nomClient, String prenomClient);
     void desaffecterCommandeDeClient(long idCommande);
 }

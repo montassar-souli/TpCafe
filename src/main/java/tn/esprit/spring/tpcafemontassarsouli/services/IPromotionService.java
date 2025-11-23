@@ -4,6 +4,7 @@ import tn.esprit.spring.tpcafemontassarsouli.dto.promotion.PromotionRequest;
 import tn.esprit.spring.tpcafemontassarsouli.dto.promotion.PromotionResponse;
 import tn.esprit.spring.tpcafemontassarsouli.entities.Promotion;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IPromotionService {
@@ -29,4 +30,20 @@ public interface IPromotionService {
 
     void affecterPromotionAArticle(long idPromotion, long idArticle);
     void desaffecterPromotionAArticle(long idPromotion, long idArticle);
+
+    //keyword
+    List<Promotion> keywordFindByPourcentagePromo(String promo);
+    List<Promotion> keywordFindByDateDebutPromo(LocalDate date);
+    List<Promotion> keywordFindByDateFinPromo(LocalDate date);
+
+    boolean keywordExistsByPourcentagePromo(String promo);
+    long keywordCountByDateDebutPromoAfter(LocalDate date);
+    List<Promotion> keywordFindByArticleIsNotEmpty();
+    List<Promotion> keywordFindByPourcentagePromoAndDateDebutPromoBetween(String promo, LocalDate start, LocalDate end);
+
+    List<Promotion> keywordFindByPourcentagePromoOrderByDateDebutPromo(String promo);
+    List<Promotion> keywordFindByArticleNotEmptyOrderByPourcentagePromo();
+    List<Promotion> keywordFindByDateFinPromoIsNull();
+    List<Promotion> keywordFindByPourcentagePromoIsNotNull();
+    List<Promotion> keywordFindByDateFinPromoBefore(LocalDate date);
 }

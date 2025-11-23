@@ -40,9 +40,9 @@ public class CommandeRestController {
         service.affecterCommandeAClient(idCommande, idClient);
     }
 
-    @PutMapping("affecterCommandeAClient")
-    public void affecterCommandeAClient(LocalDate dateCommande, String nomClient, String prenomClient){
-        service.affecterCommandeAClient(dateCommande, nomClient, prenomClient);
+    @PutMapping("affecterCommandeAClient2")
+    public void affecterCommandeAClient2(LocalDate dateCommande, String nomClient, String prenomClient){
+        service.affecterCommandeAClient2(dateCommande, nomClient, prenomClient);
     }
 
     @PutMapping("desaffecterCommandeDeClient")

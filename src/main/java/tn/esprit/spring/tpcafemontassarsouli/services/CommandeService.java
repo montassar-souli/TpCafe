@@ -105,7 +105,7 @@ public class CommandeService implements ICommandeService {
     }
 
     @Override
-    public void affecterCommandeAClient(LocalDate dateCommande, String nomClient, String prenomClient) {
+    public void affecterCommandeAClient2(LocalDate dateCommande, String nomClient, String prenomClient) {
         // 1- Recuper les Objets
         Commande commande = repo.findByDateCommande(dateCommande);
         Client client = clientRepo.findByNomAndPrenom(nomClient, prenomClient);

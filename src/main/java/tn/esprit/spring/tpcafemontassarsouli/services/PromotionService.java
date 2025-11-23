@@ -10,6 +10,7 @@ import tn.esprit.spring.tpcafemontassarsouli.mappers.PromotionMapper;
 import tn.esprit.spring.tpcafemontassarsouli.repositories.ArticleRepository;
 import tn.esprit.spring.tpcafemontassarsouli.repositories.PromotionRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 @AllArgsConstructor
@@ -111,5 +112,54 @@ public class PromotionService implements IPromotionService{
         articleRepo.save(article);
     }
 
+    // keyword
 
+    @Override
+    public List<Promotion> keywordFindByPourcentagePromo(String promo) {
+        return repo.findByPourcentagePromo(promo);
+    }
+    @Override
+    public List<Promotion> keywordFindByDateDebutPromo(LocalDate date) {
+        return repo.findByDateDebutPromo(date);
+    }
+    @Override
+    public List<Promotion> keywordFindByDateFinPromo(LocalDate date) {
+        return repo.findByDateFinPromo(date);
+    }
+    @Override
+    public boolean keywordExistsByPourcentagePromo(String promo) {
+        return repo.existsByPourcentagePromo(promo);
+    }
+    @Override
+    public long keywordCountByDateDebutPromoAfter(LocalDate date) {
+        return repo.countByDateDebutPromoAfter(date);
+    }
+    @Override
+    public List<Promotion> keywordFindByArticleIsNotEmpty() {
+        return repo.findByArticleEmpty();
+    }
+    @Override
+    public List<Promotion> keywordFindByPourcentagePromoAndDateDebutPromoBetween(String promo, LocalDate start, LocalDate end) {
+        return repo.findByPourcentagePromoAndDateDebutPromoBetween(promo, start, end);
+    }
+    @Override
+    public List<Promotion> keywordFindByPourcentagePromoOrderByDateDebutPromo(String promo) {
+        return repo.findByPourcentagePromoOrderByDateDebutPromo(promo);
+    }
+    @Override
+    public List<Promotion> keywordFindByArticleNotEmptyOrderByPourcentagePromo() {
+        return repo.findByArticleNotEmptyOrderByPourcentagePromo();
+    }
+    @Override
+    public List<Promotion> keywordFindByDateFinPromoIsNull() {
+        return repo.findByDateFinPromoIsNull();
+    }
+    @Override
+    public List<Promotion> keywordFindByPourcentagePromoIsNotNull() {
+        return repo.findByPourcentagePromoIsNotNull();
+    }
+    @Override
+    public List<Promotion> keywordFindByDateFinPromoBefore(LocalDate date) {
+        return repo.findByDateFinPromoBefore(date);
+    }
 }
