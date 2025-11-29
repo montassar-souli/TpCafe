@@ -29,4 +29,5 @@ public interface ICarteFideliteService {
     boolean verifCarteFideliteById(long id);
 
     void affecterCarteAClient(long idCarte , long idClient);
+    List<String> incrementerPointsFidelite();
 }

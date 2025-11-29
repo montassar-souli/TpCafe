@@ -2,7 +2,10 @@ package tn.esprit.spring.tpcafemontassarsouli.services;
 
 import tn.esprit.spring.tpcafemontassarsouli.dto.client.ClientRequest;
 import tn.esprit.spring.tpcafemontassarsouli.dto.client.ClientResponse;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Adresse;
+import tn.esprit.spring.tpcafemontassarsouli.entities.CarteFidelite;
 import tn.esprit.spring.tpcafemontassarsouli.entities.Client;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Commande;
 
 import java.util.List;
 
@@ -26,4 +29,12 @@ public interface IClientService {
     long countingClient();
     boolean verifClientById(long id);
     void ajouterClient(Client c);
+
+    void ajouterCommandeEtAffecterAClient(Commande c, String nomClient, String prenomClient);
+    void ajouterEtAffecterAdresseAClient(Adresse adresse, Client client);
+    void ajoutClientEtCarteFidelite(CarteFidelite carte);
+    void ajouterClientEtCarteFideliteCascade(Client client);
+    void supprimerClientEtCarteFideliteCascade(Client client);
+    void addClientEtCarteFidelite(Client client);
+    List <Client> incrementerPts();
 }

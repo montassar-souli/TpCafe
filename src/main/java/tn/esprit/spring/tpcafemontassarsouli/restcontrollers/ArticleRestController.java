@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.tpcafemontassarsouli.dto.article.ArticleRequest;
 import tn.esprit.spring.tpcafemontassarsouli.dto.article.ArticleResponse;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Article;
 import tn.esprit.spring.tpcafemontassarsouli.services.IArticleService;
 
 import java.util.List;
@@ -34,6 +35,14 @@ public class ArticleRestController {
         return service.getAllArticlesDTO();
     }
 
+    @PostMapping("ajouterArticleEtPromotionsCascade")
+    public void ajouterArticleEtPromotionsCascade(@RequestBody Article article){
+        service.ajouterArticleEtPromotionsCascade(article);
+    }
 
+    @DeleteMapping("supprimerArticleEtPromotionsCascade")
+    public void supprimerArticleEtPromotionsCascade(@RequestBody Article article){
+        service.supprimerArticleEtPromotionsCascade(article);
+    }
 
 }

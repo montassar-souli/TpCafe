@@ -26,4 +26,9 @@ public interface IArticleService {
     void deleteArticleById(long id);
     long countingArticle();
     boolean verifArticleById(long id);
+
+    void ajouterArticleEtPromotionsCascade(Article article);
+    void supprimerArticleEtPromotionsCascade(Article article);
+
+    List<Article> getArticlesEnPromotion();
 }

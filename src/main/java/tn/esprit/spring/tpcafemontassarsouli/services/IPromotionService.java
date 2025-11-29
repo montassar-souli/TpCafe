@@ -2,6 +2,7 @@ package tn.esprit.spring.tpcafemontassarsouli.services;
 
 import tn.esprit.spring.tpcafemontassarsouli.dto.promotion.PromotionRequest;
 import tn.esprit.spring.tpcafemontassarsouli.dto.promotion.PromotionResponse;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Article;
 import tn.esprit.spring.tpcafemontassarsouli.entities.Promotion;
 
 import java.time.LocalDate;
@@ -46,4 +47,6 @@ public interface IPromotionService {
     List<Promotion> keywordFindByDateFinPromoIsNull();
     List<Promotion> keywordFindByPourcentagePromoIsNotNull();
     List<Promotion> keywordFindByDateFinPromoBefore(LocalDate date);
+    void ajouterPromotionEtAffecterAArticle(Promotion promo,long idArticle);
+
 }

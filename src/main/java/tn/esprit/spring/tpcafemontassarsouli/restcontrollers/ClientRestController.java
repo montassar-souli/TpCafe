@@ -40,4 +40,13 @@ public class ClientRestController {
         service.ajouterClient(c);
     }
 
+    @PostMapping("ajouterClientEtCarteFideliteCascade")
+    public void ajouterClientEtCarteFideliteCascade(@RequestBody Client client){
+        service.ajouterClientEtCarteFideliteCascade(client);
+    }
+
+    @DeleteMapping("supprimerClientEtCarteFideliteCascade")
+    public void supprimerClientEtCarteFideliteCascade(@RequestBody Client client){
+        service.supprimerClientEtCarteFideliteCascade(client);
+    }
 }

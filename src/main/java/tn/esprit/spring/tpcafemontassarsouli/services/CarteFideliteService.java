@@ -10,6 +10,8 @@ import tn.esprit.spring.tpcafemontassarsouli.mappers.CarteFideliteMapper;
 import tn.esprit.spring.tpcafemontassarsouli.repositories.CarteFideliteRepository;
 import tn.esprit.spring.tpcafemontassarsouli.repositories.ClientRepository;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 @Service
 @AllArgsConstructor
@@ -102,5 +104,20 @@ public class CarteFideliteService implements ICarteFideliteService{
         // Persiste .save
 
 
+    }
+
+    @Override
+    public List<String> incrementerPointsFidelite() {
+        List<String> client_with_bithdays = new ArrayList<>();
+        List<CarteFidelite> carteFidelites = repo.findAll();
+        LocalDate now = LocalDate.now();
+        for (CarteFidelite carte : carteFidelites) {
+            if(now == carte.getClient().getDateNaissance()){
+                int pointAajouter = (int) Math.ceil(carte.getPointAccumules() * 0.10);
+                carte.setIdCarteFidilite(carte.getIdCarteFidilite() + pointAajouter );
+                client_with_bithdays.add(carte.getClient().getNom());
+            }
+        }
+        return client_with_bithdays;
     }
 }

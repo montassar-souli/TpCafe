@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import tn.esprit.spring.tpcafemontassarsouli.entities.Article;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article,Long> {
@@ -43,5 +44,8 @@ public interface ArticleRepository extends JpaRepository<Article,Long> {
     // 12-
     @Query("SELECT a FROM Article a WHERE a.nomArticle LIKE %?1")
     List<Article> getNomEndWith(String c);
+
+    @Query("SELECT a FROM Article a JOIN a.promotion p WHERE MONTH (:date) BETWEEN MONTH(p.dateDebutPromo) AND MONTH(p.dateFinPromo) AND YEAR(:date) BETWEEN YEAR(p.dateDebutPromo) AND YEAR(p.dateFinPromo)")
+    List<Article> findArticlesEnPromoByMonth(LocalDate date);
 
 }

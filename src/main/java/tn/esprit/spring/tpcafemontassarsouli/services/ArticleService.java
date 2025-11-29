@@ -9,6 +9,7 @@ import tn.esprit.spring.tpcafemontassarsouli.entities.TypeArticle;
 import tn.esprit.spring.tpcafemontassarsouli.mappers.ArticleMapper;
 import tn.esprit.spring.tpcafemontassarsouli.repositories.ArticleRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 @AllArgsConstructor
@@ -88,5 +89,22 @@ public class ArticleService implements IArticleService{
     @Override
     public boolean verifArticleById(long id) {
         return repo.existsById(id);
+    }
+
+    @Override
+    public void ajouterArticleEtPromotionsCascade(Article article) {
+        repo.save(article);
+    }
+
+    @Override
+    public void supprimerArticleEtPromotionsCascade(Article article) {
+        repo.delete(article);
+    }
+
+    @Override
+    public List<Article> getArticlesEnPromotion() {
+        LocalDate now = LocalDate.now();
+        List<Article> articles = repo.findArticlesEnPromoByMonth(now);
+        return articles;
     }
 }

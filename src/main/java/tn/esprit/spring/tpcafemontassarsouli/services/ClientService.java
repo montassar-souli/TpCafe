@@ -4,15 +4,25 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.tpcafemontassarsouli.dto.client.ClientRequest;
 import tn.esprit.spring.tpcafemontassarsouli.dto.client.ClientResponse;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Adresse;
+import tn.esprit.spring.tpcafemontassarsouli.entities.CarteFidelite;
 import tn.esprit.spring.tpcafemontassarsouli.entities.Client;
+import tn.esprit.spring.tpcafemontassarsouli.entities.Commande;
 import tn.esprit.spring.tpcafemontassarsouli.mappers.ClientMapper;
+import tn.esprit.spring.tpcafemontassarsouli.repositories.AdresseRepository;
+import tn.esprit.spring.tpcafemontassarsouli.repositories.CarteFideliteRepository;
 import tn.esprit.spring.tpcafemontassarsouli.repositories.ClientRepository;
+import tn.esprit.spring.tpcafemontassarsouli.repositories.CommandeRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 @AllArgsConstructor
 public class ClientService implements IClientService{
     ClientRepository repo;
+    CommandeRepository commandeRepo;
+    AdresseRepository adresseRepo;
+    CarteFideliteRepository carteFideliteRepo;
     ClientMapper mapper;
     @Override
     public Client addClient(Client a) {
@@ -94,4 +104,64 @@ public class ClientService implements IClientService{
     public void ajouterClient(Client c) {
         repo.save(c);
     }
+
+    @Override
+    public void ajouterCommandeEtAffecterAClient(Commande c, String nomClient, String prenomClient) {
+//        commandeRepo.save(c);
+//        Commande commande = commandeRepo.findById(c.getIdCommande()).get();
+        c = commandeRepo.save(c);
+        Client client = repo.findByNomAndPrenom(nomClient,prenomClient);
+        c.setClient(client);
+        commandeRepo.save(c);
+    }
+
+    @Override
+    public void ajouterEtAffecterAdresseAClient(Adresse adresse, Client client) {
+        client.setAdresse(adresse);
+        repo.save(client);
+    }
+
+    @Override
+    public void ajoutClientEtCarteFidelite(CarteFidelite carte) {
+        Client client = repo.save(carte.getClient());
+        carte = carteFideliteRepo.save(carte);
+
+        client.setCarteFidelite(carte);
+        repo.save(client);
+    }
+
+    @Override
+    public void ajouterClientEtCarteFideliteCascade(Client client) {
+            repo.save(client);
+    }
+
+    @Override
+    public void supprimerClientEtCarteFideliteCascade(Client client) {
+            repo.delete(client);
+    }
+
+    @Override
+    public void addClientEtCarteFidelite(Client client) {
+        // l'ajout de la carte se fait dans le code
+        CarteFidelite carte = CarteFidelite
+                .builder()
+                .pointAccumules(0)
+                .dateCreating(LocalDate.now())
+                .build();
+        client.setCarteFidelite(carte);
+        repo.save(client);
+    }
+
+    @Override
+    public List<Client> incrementerPts() {
+            List<Client> clients = repo.findByDateNaissance(LocalDate.now());
+            for(Client c:clients){
+                c.getCarteFidelite().setPointAccumules
+                        ((int) (c.getCarteFidelite().getPointAccumules()
+                                + (c.getCarteFidelite().getPointAccumules() * 0.1)));
+                carteFideliteRepo.save(c.getCarteFidelite());
+            }
+        return clients;
+    }
+
 }
