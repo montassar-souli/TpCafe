@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Article {
     @Id

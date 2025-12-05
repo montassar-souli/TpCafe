@@ -45,7 +45,9 @@ public interface ArticleRepository extends JpaRepository<Article,Long> {
     @Query("SELECT a FROM Article a WHERE a.nomArticle LIKE %?1")
     List<Article> getNomEndWith(String c);
 
-    @Query("SELECT a FROM Article a JOIN a.promotion p WHERE MONTH (:date) BETWEEN MONTH(p.dateDebutPromo) AND MONTH(p.dateFinPromo) AND YEAR(:date) BETWEEN YEAR(p.dateDebutPromo) AND YEAR(p.dateFinPromo)")
+    @Query("SELECT a FROM Article a JOIN a.promotion p WHERE MONTH (:date)" +
+            " BETWEEN MONTH(p.dateDebutPromo) AND MONTH(p.dateFinPromo) AND YEAR(:date)" +
+            " BETWEEN YEAR(p.dateDebutPromo) AND YEAR(p.dateFinPromo)")
     List<Article> findArticlesEnPromoByMonth(LocalDate date);
 
 }

@@ -10,8 +10,6 @@ import tn.esprit.spring.tpcafemontassarsouli.services.IAdressService;
 import java.util.List;
 
 @RestController
-// ou bien @Controller + @ResponseBody
-// ou bien @Component
 @AllArgsConstructor
 @RequestMapping("address")
 public class AdressRestController {

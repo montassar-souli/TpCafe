@@ -164,12 +164,10 @@ public class PromotionService implements IPromotionService{
     }
 
     @Override
-    public void ajouterPromotionEtAffecterAArticle(Promotion promo, long idArticle) {
+    public void ajouterPromoEtAffecterAArticle(Promotion promo, long idArticle) {
         Article article = articleRepo.findById(idArticle).get();
         // Promotion promotion = repo.save(promo); optionel car cascade
         article.getPromotion().add(promo);
         articleRepo.save(article);
     }
-
-
 }

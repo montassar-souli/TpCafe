@@ -47,6 +47,6 @@ public interface IPromotionService {
     List<Promotion> keywordFindByDateFinPromoIsNull();
     List<Promotion> keywordFindByPourcentagePromoIsNotNull();
     List<Promotion> keywordFindByDateFinPromoBefore(LocalDate date);
-    void ajouterPromotionEtAffecterAArticle(Promotion promo,long idArticle);
+    void ajouterPromoEtAffecterAArticle(Promotion promo,long idArticle);
 
 }
