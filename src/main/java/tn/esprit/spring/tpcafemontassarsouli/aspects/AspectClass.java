@@ -49,6 +49,7 @@ public class AspectClass {
         log.info("Méthode: {}", methodName);
         log.info("======================");
     }
+    //
 
     @AfterReturning("execution(* tn.esprit.spring.tpcafemontassarsouli.restcontrollers.*.ajouter*(..))")
     public void logAfterAjouterMethod(JoinPoint joinPoint) {
