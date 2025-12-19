@@ -19,32 +19,32 @@ public class ScheduledMethods {
     // fixedRate(ms) par periode (peut avoir 2 exec sumultané de meme method)
     // fixedDelay(ms) par delai (attend la fin de la 1ere exec avant de lancer la 2eme)
     // Cron (* * * * * *)
-    @Scheduled(fixedRate = 2000)
-    public void method1(){
-        log.info("Ceci est un message");
-    }
-
-    @Scheduled(fixedDelay = 4000)
-    public void method2(){
-        log.warn("Ceci est un message 2");
-    }
+//    @Scheduled(fixedRate = 2000)
+//    public void method1(){
+//        log.info("Ceci est un message");
+//    }
+//
+//    @Scheduled(fixedDelay = 4000)
+//    public void method2(){
+//        log.warn("Ceci est un message 2");
+//    }
     // Implimenter la methode qui incremente les points de fidlite des client dont la date systeme correspond
     // a la date d'anniversaire (+10%) cette methode se declenche chaque jour a 00h00m00s utiliser SLFuJ pour afficher les client concernes
 
-    @Scheduled(cron = "0 0 0 * * *")// chaque jour a minuit
-    public void method3(){
-        for (Client client: clientService.incrementerPts()){
-            log.info("Client" + client.getNom() + " " + client.getPrenom());
-        }
-    }
+//    @Scheduled(cron = "0 0 0 * * *")// chaque jour a minuit
+//    public void method3(){
+//        for (Client client: clientService.incrementerPts()){
+//            log.info("Client" + client.getNom() + " " + client.getPrenom());
+//        }
+//    }
 
     // 2 - Implementer une methode qui se declanche chaque debut du mois ,qui affiche les articles en promo de ce mois
-    @Scheduled(cron = "0 0 0 1 * *")// 1er jour de chaque mois a minuit
-    public void method4() {
-        for (Article article : articleService.getArticlesEnPromotion()){
-            log.info("Articles en promo : "  + article.getNomArticle());
-        }
-    }
+//    @Scheduled(cron = "0 0 0 1 * *")// 1er jour de chaque mois a minuit
+//    public void method4() {
+//        for (Article article : articleService.getArticlesEnPromotion()){
+//            log.info("Articles en promo : "  + article.getNomArticle());
+//        }
+//    }
     // 1s = 1000ms
     // 1m = 60000ms
     // 1h = 3600000ms
